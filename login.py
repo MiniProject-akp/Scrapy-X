@@ -2,10 +2,8 @@ import customtkinter as ctk
 import tkinter.messagebox as tkmb 
 
 
-# Selecting GUI theme - dark, light , system (for system default) 
 ctk.set_appearance_mode("dark") 
 
-# Selecting color theme - blue, green, dark-blue 
 ctk.set_default_color_theme("blue") 
 
 app = ctk.CTk() 
@@ -15,7 +13,7 @@ app.title("Welcome to Scrapy-X")
 
 def login(): 
 
-	username = "Geeks"
+	username = "Prem"
 	password = "12345"
 	new_window = ctk.CTkToplevel(app) 
 
@@ -25,7 +23,7 @@ def login():
 
 	if user_entry.get() == username and user_pass.get() == password: 
 		tkmb.showinfo(title="Login Successful",message="You have logged in Successfully") 
-		ctk.CTkLabel(new_window,text="GeeksforGeeks is best for learning ANYTHING !!").pack() 
+		ctk.CTkLabel(new_window,text="Hello dear").pack() 
 	elif user_entry.get() == username and user_pass.get() != password: 
 		tkmb.showwarning(title='Wrong password',message='Please check your password') 
 	elif user_entry.get() != username and user_pass.get() == password: 
