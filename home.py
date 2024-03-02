@@ -63,10 +63,10 @@ signup_button = tk.Button(top_frame, text="Signup", bg="#240a88", fg="#D8BFD8") 
 signup_button.pack(side="right", padx=10)
 
 login_button = tk.Button(top_frame, text="Login", bg="#240a88", fg="#D8BFD8")  # Light purple color
-login_button.pack(side="right", padx=10)
+login_button.pack(side="right", padx=30)
 
 # Load the picture to be displayed on the right side
-picture_image = Image.open(r"assets\iii.png")  # Replace with your own image path
+picture_image = Image.open(r"assets\hhh.png")  # Replace with your own image path
 picture_image = picture_image.resize((800, 450))  # Resize the image as needed
 picture_photo = ImageTk.PhotoImage(picture_image)
 
