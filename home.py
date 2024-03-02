@@ -8,9 +8,9 @@ class HomePage:
         self.root.title("Homepage")
         self.root.configure(bg='black')
 
-        # Load the picture to be displayed
-        picture_image = Image.open("assets/pic.jpeg")  # Replace with your local image file path
-        picture_image = picture_image.resize((800, 450))  # Resize the image as needed
+    
+        picture_image = Image.open("assets/pic.jpeg")  
+        picture_image = picture_image.resize((800, 450)) 
         self.picture_photo = ImageTk.PhotoImage(picture_image)
 
         # Create a canvas for the image
@@ -18,11 +18,10 @@ class HomePage:
         self.canvas.create_image(0, 0, anchor=tk.NW, image=self.picture_photo)
         self.canvas.pack(side="right", padx=10, pady=10)
 
-        # Add a transparent heading label on top of the image
+       
         heading_label = tk.Label(root, text="                                    Welcome to Scrapy-X", font=("Arial", 20, "bold"), fg="black", bg='yellow')
         heading_label_window = self.canvas.create_window(10, 10, anchor=tk.NW, window=heading_label)
 
-        # Add login and signup buttons to the canvas with a modern design
         login_button = tk.Button(root, text="Login", bg="black", fg="white", font=("Bebas", 16, "bold"),
                                  relief=tk.RIDGE, bd=2, command=self.open_login)
         login_button_window = self.canvas.create_window(370, 150, anchor=tk.NW, window=login_button)
@@ -32,11 +31,9 @@ class HomePage:
         signup_button_window = self.canvas.create_window(370, 200, anchor=tk.NW, window=signup_button)
 
     def open_login(self):
-        # Run the login.py script when the "Login" button is clicked
         subprocess.run(["python", "login.py"])
 
     def open_signup(self):
-        # Implement your signup functionality here
         print("Signup button clicked")
 
 if __name__ == "__main__":
