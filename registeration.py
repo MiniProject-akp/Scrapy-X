@@ -21,8 +21,8 @@ appWidth, appHeight = 600, 700
 class App(ctk.CTk):
     # The layout of the window will be written
     # in the init function itself
-    def _init_(self, *args, **kwargs):
-        super()._init_(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
         # Sets the title of the window to "App"
         self.title("Registration Page") 
@@ -132,4 +132,4 @@ class App(ctk.CTk):
 if __name__ == "__main__":
     app = App()
     # Used to run the application
-    app.mainloop()
+    app.mainloop()	 
