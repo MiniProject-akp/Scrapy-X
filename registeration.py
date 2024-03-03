@@ -11,7 +11,7 @@ ctk.set_appearance_mode("dark")
 
 # Sets the color of the widgets in the window
 # Supported themes : green, dark-blue, blue 
-ctk.set_default_color_theme("green") 
+ctk.set_default_color_theme("blue") 
 
 # Dimensions of the window
 appWidth, appHeight = 600, 700
