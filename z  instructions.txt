@@ -1,0 +1,17 @@
+laptop chalu krte hi pehle "git pull origin main"
+fir jo b changes karne h krne ke baad 
+1. git add .
+2. git commit -m "message"
+3. git push origin main
+
+
+agar aisa lag rha h ki update krte time lene ke dene pad jayenge mtlb agr error wagera aa skta h 
+to sabse pehle ek branch banane ka 
+1. git branch "kuch b naam dal dene ka"
+2. uss branch me switch krne ka using "git check out "us branch ka naam""
+now you r good to go, do whatever you want
+
+
+branch banake ke tum same code ka ek duplicate bana rhe ho or usme change kr rhe ho to original me kuch affect 
+nhi krega agr duplicate me sb success ho jaye to git merge branch kr dene ka or try krne ka ki error wala seen aaye 
+hi na
