@@ -1,101 +1,46 @@
+from customtkinter import *
+from PIL import Image
 
-import customtkinter as ctk
-import tkinter as tk
+app = CTk()
+app.geometry("600x480")
+app.resizable(0, 0)
 
-ctk.set_appearance_mode("dark") 
-ctk.set_default_color_theme("blue") 
-appWidth, appHeight = 600, 700
+side_img_data = Image.open("assets\\side-img.png")
+email_icon_data = Image.open("assets\\email-icon.png")
+password_icon_data = Image.open("assets\\password-icon.png")
+google_icon_data = Image.open("assets\\google-icon.png")
+user_icon_data = Image.open(r"assets\user.png")  # Use raw string with 'r' before the string
+signature_icon_data = Image.open(r"assets\signature.png")  # Use raw string with 'r' before the string
 
-class App(ctk.CTk):
-   
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-  
-        self.title("Registration Page") 
-        self.geometry(f"{appWidth}x{appHeight}") 
+side_img = CTkImage(dark_image=side_img_data, light_image=side_img_data, size=(300, 480))
+email_icon = CTkImage(dark_image=email_icon_data, light_image=email_icon_data, size=(20, 20))
+password_icon = CTkImage(dark_image=password_icon_data, light_image=password_icon_data, size=(17, 17))
+google_icon = CTkImage(dark_image=google_icon_data, light_image=google_icon_data, size=(17, 17))
+user_icon = CTkImage(dark_image=user_icon_data, light_image=user_icon_data, size=(20, 20))
+signature_icon = CTkImage(dark_image=signature_icon_data, light_image=signature_icon_data, size=(20, 20))
 
-        self.createAccountLabel = ctk.CTkLabel(self,
-                                text="Create Account",
-                                font=("Arial", 16, "bold"),
-                                pady=10)
-        self.createAccountLabel.grid(row=0, column=0,
-                            columnspan=4,
-                            padx=20, pady=20,
-                            sticky="ew")
+CTkLabel(master=app, text="", image=side_img).pack(expand=True, side="left")
 
-        self.nameLabel = ctk.CTkLabel(self,
-                                text="Name")
-        self.nameLabel.grid(row=1, column=0,
-                            padx=20, pady=10,
-                            sticky="ew")
+frame = CTkFrame(master=app, width=300, height=480, fg_color="#ffffff")
+frame.pack_propagate(0)
+frame.pack(expand=True, side="right")
 
-        self.nameEntry = ctk.CTkEntry(self,
-                        placeholder_text="John Doe")
-        self.nameEntry.grid(row=1, column=1,
-                            columnspan=3, padx=20,
-                            pady=10, sticky="ew")
+CTkLabel(master=frame, text="Welcome To Scrapy-X", text_color="#601E88", anchor="w", justify="left", font=("Arial Bold", 24)).pack(anchor="w", pady=(20, 5), padx=(25, 0))
+CTkLabel(master=frame, text="Please Fill Your Credentials", text_color="#7E7E7E", anchor="w", justify="left", font=("Arial Bold", 12)).pack(anchor="w", padx=(25, 0))
 
-        self.emailLabel = ctk.CTkLabel(self,
-                                text="Email")
-        self.emailLabel.grid(row=2, column=0,
-                            padx=20, pady=10,
-                            sticky="ew")
+CTkLabel(master=frame, text="  UserName:", text_color="#601E88", anchor="w", justify="left", font=("Arial Bold", 14), image=user_icon, compound="left").pack(anchor="w", pady=(10, 0), padx=(25, 0))
+CTkEntry(master=frame, width=225, fg_color="#EEEEEE", border_color="#601E88", border_width=1, text_color="#000000").pack(anchor="w", padx=(25, 0))
 
-        self.emailEntry = ctk.CTkEntry(self,
-                        placeholder_text="example@example.com")
-        self.emailEntry.grid(row=2, column=1,
-                            columnspan=3, padx=20,
-                            pady=10, sticky="ew")
+CTkLabel(master=frame, text="  Purpose:", text_color="#601E88", anchor="w", justify="left", font=("Arial Bold", 14), image=signature_icon, compound="left").pack(anchor="w", pady=(10, 0), padx=(25, 0))
+CTkEntry(master=frame, width=225, fg_color="#EEEEEE", border_color="#601E88", border_width=1, text_color="#000000").pack(anchor="w", padx=(25, 0))
 
-        self.createPasswordLabel = ctk.CTkLabel(self, text="Create Password")
-        self.createPasswordLabel.grid(row=3, column=0,
-                        padx=20, pady=10,
-                        sticky="ew")
+CTkLabel(master=frame, text="  Email:", text_color="#601E88", anchor="w", justify="left", font=("Arial Bold", 14), image=email_icon, compound="left").pack(anchor="w", pady=(10, 0), padx=(25, 0))
+CTkEntry(master=frame, width=225, fg_color="#EEEEEE", border_color="#601E88", border_width=1, text_color="#000000").pack(anchor="w", padx=(25, 0))
 
-        self.createPasswordEntry = ctk.CTkEntry(self,
-                            placeholder_text="Password", show="*")
-        self.createPasswordEntry.grid(row=3, column=1,
-                        columnspan=3, padx=20,
-                        pady=10, sticky="ew")
+CTkLabel(master=frame, text="  Password:", text_color="#601E88", anchor="w", justify="left", font=("Arial Bold", 14), image=password_icon, compound="left").pack(anchor="w", pady=(10, 0), padx=(25, 0))
+CTkEntry(master=frame, width=225, fg_color="#EEEEEE", border_color="#601E88", border_width=1, text_color="#000000", show="*").pack(anchor="w", padx=(25, 0))
 
-        self.confirmPasswordLabel = ctk.CTkLabel(self, text="Confirm Password")
-        self.confirmPasswordLabel.grid(row=4, column=0,
-                        padx=20, pady=10,
-                        sticky="ew")
+CTkButton(master=frame, text="Sign Up", fg_color="#601E88", hover_color="#E44982", font=("Arial Bold", 12), text_color="#ffffff", width=225).pack(anchor="w", pady=(20, 0), padx=(25, 0))
+CTkButton(master=frame, text="Continue With Google", fg_color="#EEEEEE", hover_color="#EEEEEE", font=("Arial Bold", 9), text_color="#601E88", width=225, image=google_icon).pack(anchor="w", pady=(10, 0), padx=(25, 0))
 
-        self.confirmPasswordEntry = ctk.CTkEntry(self,
-                            placeholder_text="Confirm Password", show="*")
-        self.confirmPasswordEntry.grid(row=4, column=1,
-                        columnspan=3, padx=20,
-                        pady=10, sticky="ew")
-
-        self.occupationLabel = ctk.CTkLabel(self,
-                                    text="Occupation")
-        self.occupationLabel.grid(row=5, column=0,
-                                padx=20, pady=10,
-                                sticky="ew")
-
-        self.occupationOptionMenu = ctk.CTkOptionMenu(self,
-                                    values=["Student", "Professional"])
-        self.occupationOptionMenu.grid(row=5, column=1,
-                                    columnspan=3, padx=20,
-                                    pady=10, sticky="ew")
-
-        self.registerButton = ctk.CTkButton(self,
-                                        text="Register",
-                                        command=self.register)
-        self.registerButton.grid(row=6, column=1,
-                                        columnspan=2, padx=20, 
-                                        pady=20, sticky="ew")
-
-    def register(self):
-        text = self.createText()
-        print(text)
-    
-    def createText(self):
-        text = f"Name: {self.nameEntry.get()} \nEmail: {self.emailEntry.get()} \nOccupation: {self.occupationOptionMenu.get()}"
-        return text
-
-if __name__ == "__main__":
-    app = App()
-    app.mainloop()	 
+app.mainloop()
