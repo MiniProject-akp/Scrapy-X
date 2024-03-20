@@ -8,11 +8,11 @@ class Feedback:
 
         master.title('SCRAPY-X  USER  REVIEW')
         master.resizable(False, False)
-        master.configure(background='#000000')  # Set background color to black
+        master.configure(background='#000000')  
 
         self.style = ttk.Style()
         self.style.configure('TFrame', background='#000000')
-        self.style.configure('TButton', background='#000000', foreground='white', font=('Barlow', 11))  # Set default button style
+        self.style.configure('TButton', background='#000000', foreground='white', font=('Barlow', 11))  
         self.style.configure('TLabel', background='#000000', font=('Barlow', 11, 'bold'), foreground='white')
         self.style.configure('header.TLabel', font=('Barlow', 18, 'bold'), foreground='white')
 
@@ -23,25 +23,24 @@ class Feedback:
         ttk.Label(self.frame_header, text="We're glad you chose to explore SCRAPY-X!\nPlease tell us how it was.",
                   justify='center').grid(row=1, column=0)
 
-        self.frame_content = ttk.Frame(master)  # content frame
-        self.frame_content.pack(pady=10)  # Add padding to the frame
+        self.frame_content = ttk.Frame(master)  
+        self.frame_content.pack(pady=10)  
 
-        ttk.Label(self.frame_content, text='Name:').grid(row=0, column=0, padx=5, pady=5, sticky='sw')  # Add pady to shift downwards
-        ttk.Label(self.frame_content, text='Email:').grid(row=0, column=1, padx=5, pady=5, sticky='sw')  # Add pady to shift downwards
-        ttk.Label(self.frame_content, text='Comments:').grid(row=2, column=0, padx=5, pady=5, sticky='sw')  # Add pady to shift downwards
+        ttk.Label(self.frame_content, text='Name:').grid(row=0, column=0, padx=5, pady=5, sticky='sw')  
+        ttk.Label(self.frame_content, text='Email:').grid(row=0, column=1, padx=5, pady=5, sticky='sw')  
+        ttk.Label(self.frame_content, text='Comments:').grid(row=2, column=0, padx=5, pady=5, sticky='sw')  
 
         self.entry_name = ttk.Entry(self.frame_content, width=24, font=('Barlow', 10))
         self.entry_email = ttk.Entry(self.frame_content, width=24, font=('Barlow', 10))
-        self.text_comments = Text(self.frame_content, width=50, height=5, font=('Barlow', 10), foreground='white')  # Adjust height of the text box
+        self.text_comments = Text(self.frame_content, width=50, height=5, font=('Barlow', 10), foreground='white')  
 
-        self.entry_name.grid(row=1, column=0, padx=5, pady=5)  # Add pady to shift downwards
-        self.entry_email.grid(row=1, column=1, padx=5, pady=5)  # Add pady to shift downwards
-        self.text_comments.grid(row=3, column=0, columnspan=2, padx=5, pady=5)  # Add pady to shift downwards
+        self.entry_name.grid(row=1, column=0, padx=5, pady=5)  
+        self.entry_email.grid(row=1, column=1, padx=5, pady=5)  
+        self.text_comments.grid(row=3, column=0, columnspan=2, padx=5, pady=5)  
 
-        ttk.Button(self.frame_content, text='Submit', command=self.submit, style='SubmitButton.TButton').grid(row=4, column=0, padx=5, pady=5, sticky='e')  # Add pady
-        ttk.Button(self.frame_content, text='Clear', command=self.clear, style='ClearButton.TButton').grid(row=4, column=1, padx=5, pady=5, sticky='w')  # Add pady
+        ttk.Button(self.frame_content, text='Submit', command=self.submit, style='SubmitButton.TButton').grid(row=4, column=0, padx=5, pady=5, sticky='e')  
+        ttk.Button(self.frame_content, text='Clear', command=self.clear, style='ClearButton.TButton').grid(row=4, column=1, padx=5, pady=5, sticky='w')  
 
-        # Custom style for Submit and Clear buttons
         self.style.configure('SubmitButton.TButton', foreground='black', font=('Barlow', 11, 'bold'))
         self.style.configure('ClearButton.TButton', foreground='black', font=('Barlow', 11, 'bold'))
 
