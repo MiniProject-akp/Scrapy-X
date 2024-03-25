@@ -36,7 +36,7 @@ class HomePage(tk.Frame):
                                       relief=tk.RIDGE, bd=2, command=show_dashboard)
         dashboard_button_window = self.canvas.create_window(500, 10, anchor=tk.NW, window=dashboard_button)
 
-        mainpage_button = tk.Button(self, text="Mainpage", bg="indigo", fg="white", font=("Times New Roman", 16, "bold"),
+        mainpage_button = tk.Button(self, text="Scrapeyard", bg="indigo", fg="white", font=("Times New Roman", 16, "bold"),
                                     relief=tk.RIDGE, bd=2, command=show_mainpage)
         mainpage_button_window = self.canvas.create_window(10, 156, anchor=tk.NW, window=mainpage_button)
 

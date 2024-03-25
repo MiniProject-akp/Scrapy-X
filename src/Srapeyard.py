@@ -1,61 +1,77 @@
-from tkinter import Tk, Entry, Button, Frame
+import customtkinter as ctk
+from tkinter import messagebox
+import requests
+from bs4 import BeautifulSoup
+from PIL import Image, ImageTk
 
-# Define colors
-bg_color = "#222831"
-content_bg = "#2F353A"
-text_color = "white"
-border_color = "white"
-placeholder_color = "#AAAAAA"
-button_bg = "#363C43"
-button_hover_bg = "#40464B"
+# Function to scrape the website
+def scrape_website():
+    url = url_entry.get()
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            title = soup.find('title').text
+            output_text.set(title)  # Update the output_entry text
+        else:
+            messagebox.showerror("Error", f"Failed to retrieve the webpage. Status code: {response.status_code}")
+    except Exception as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
 
-# Create the main window
-root = Tk()
-root.title("Web Scraper")
-root.configure(bg=bg_color)
+# Function to toggle light and dark mode
+def toggle_mode():
+    current_mode = ctk.get_appearance_mode()
+    new_mode = "Light" if current_mode == "Dark" else "Dark"
+    ctk.set_appearance_mode(new_mode)
+    
+    # Update background image for new mode
+    image_path = "assets/lll.jpeg" if new_mode == "Light" else "path/to/your/dark_image.png"
+    update_background_image(image_path)
 
-# Create the content area
-content_frame = Frame(root, bg=content_bg, bd=0, highlightthickness=0)
-content_frame.pack(padx=20, pady=20)
+# Update the background image
+def update_background_image(image_path):
+    new_background_image = Image.open(image_path)
+    new_background_photo = ImageTk.PhotoImage(new_background_image)
+    background_label.configure(image=new_background_photo)
+    background_label.image = new_background_photo  # Keep a reference
 
-# Style definition (optional - for future enhancements)
-def button_enter(event):
-    event.widget.config(bg=button_hover_bg)
+ctk.set_appearance_mode("Dark")  # 'Light' or 'Dark'
+ctk.set_default_color_theme("dark-blue")
 
-def button_leave(event):
-    event.widget.config(bg=button_bg)
+root = ctk.CTk()
+root.title("Web Scraper with Sidebar")
+root.geometry("800x500")
 
-# Text fields
-url_entry = Entry(
-    content_frame, width=50, bg=content_bg, fg=text_color, bd=1,  # Set border width
-    # Removed unnecessary options related to highlight
-    font=("Montserrat", 12), insertwidth=2,
-    relief="flat",  # Set border style
-    disabledforeground=placeholder_color
-)
-url_entry.insert(0, "Enter URL here")
-url_entry.pack(pady=10)
+# Background Image Setup
+background_image = Image.open("assets/111.jpeg")
+background_photo = ImageTk.PhotoImage(background_image)
+background_label = ctk.CTkLabel(root, image=background_photo)
+background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-output_entry = Entry(
-    content_frame, width=50, bg=content_bg, fg=text_color, bd=1,  # Set border width
-    # Removed unnecessary options related to highlight
-    font=("Montserrat", 12), insertwidth=2,
-    relief="flat",  # Set border style
-    disabledforeground=placeholder_color
-)
-output_entry.insert(0, "Output will appear here")
+# Sidebar for modes, messages, etc.
+sidebar_frame = ctk.CTkFrame(root, width=200, corner_radius=0)
+sidebar_frame.place(relx=0, rely=0, relheight=1)
+
+# Main content area
+main_frame = ctk.CTkFrame(root)
+main_frame.place(relx=0.25, rely=0.1, relwidth=0.7, relheight=0.8)
+
+# Sidebar Image Buttons
+mode_button = ctk.CTkButton(sidebar_frame, text="Mode", command=toggle_mode, corner_radius=0)
+mode_button.pack(fill="x", padx=10, pady=10)
+
+message_button = ctk.CTkButton(sidebar_frame, text="Message", corner_radius=0)
+message_button.pack(fill="x", padx=10, pady=10)
+
+# URL Entry
+url_entry = ctk.CTkEntry(main_frame, placeholder_text="Enter URL here", corner_radius=10)
+url_entry.pack(pady=20)
+
+output_text = ctk.StringVar()
+output_entry = ctk.CTkEntry(main_frame, textvariable=output_text, placeholder_text="Output will appear here", corner_radius=10)
 output_entry.pack(pady=10)
 
-# Button
-scrape_button = Button(
-    content_frame, text="Scrape", bg=button_bg, fg=text_color, bd=2, highlightthickness=0,
-    font=("Montserrat", 12, "bold"), activebackground=button_hover_bg,
-    activeforeground=text_color, relief="flat"
-)
-# Add hover animation (optional)
-# scrape_button.bind("<Enter>", button_enter)
-# scrape_button.bind("<Leave>", button_leave)
+scrape_button = ctk.CTkButton(main_frame, text="Scrape", command=scrape_website, corner_radius=10)
 scrape_button.pack(pady=10)
 
-# Run the main loop
 root.mainloop()
