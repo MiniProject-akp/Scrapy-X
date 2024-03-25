@@ -1,5 +1,34 @@
+import tkinter.messagebox
+import subprocess
 from customtkinter import *
 from PIL import Image
+
+def login():
+    # Retrieve values from entry fields
+    entered_username = username_entry.get()
+    entered_password = password_entry.get()
+
+    # Read credentials from credentials.txt
+    with open("credentials.txt", "r") as file:
+        lines = file.readlines()
+        saved_username = lines[0].strip().split(":")[1]
+        saved_password = lines[1].strip().split(":")[1]
+
+    print("Entered Username:", entered_username)
+    print("Entered Password:", entered_password)
+    print("Saved Username:", saved_username)
+    print("Saved Password:", saved_password)
+
+    # Check if entered credentials match with saved credentials
+    if entered_username == saved_username and entered_password == saved_password:
+        # Show login successful message
+        tkinter.messagebox.showinfo("Success", "Login successful!")
+        
+        # Open scrapeyard.py file
+        subprocess.Popen(["python", "C:/Users/depak/Scrapy-X/src/Srapeyard.py"])
+    else:
+        tkinter.messagebox.showerror("Error", "Invalid username or password")
+
 
 app = CTk()
 app.geometry("600x480")
@@ -23,12 +52,14 @@ CTkLabel(master=frame, text="Welcome Back!", text_color="#601E88", anchor="w", j
 CTkLabel(master=frame, text="Sign in to your account", text_color="#7E7E7E", anchor="w", justify="left", font=("Arial Bold", 12)).pack(anchor="w", padx=(25, 0))
 
 CTkLabel(master=frame, text="  Username:", text_color="#601E88", anchor="w", justify="left", font=("Arial Bold", 14), image=email_icon, compound="left").pack(anchor="w", pady=(38, 0), padx=(25, 0))
-CTkEntry(master=frame, width=225, fg_color="#EEEEEE", border_color="#601E88", border_width=1, text_color="#000000").pack(anchor="w", padx=(25, 0))
+username_entry = CTkEntry(master=frame, width=225, fg_color="#EEEEEE", border_color="#601E88", border_width=1, text_color="#000000")
+username_entry.pack(anchor="w", padx=(25, 0))
 
 CTkLabel(master=frame, text="  Password:", text_color="#601E88", anchor="w", justify="left", font=("Arial Bold", 14), image=password_icon, compound="left").pack(anchor="w", pady=(21, 0), padx=(25, 0))
-CTkEntry(master=frame, width=225, fg_color="#EEEEEE", border_color="#601E88", border_width=1, text_color="#000000", show="*").pack(anchor="w", padx=(25, 0))
+password_entry = CTkEntry(master=frame, width=225, fg_color="#EEEEEE", border_color="#601E88", border_width=1, text_color="#000000", show="*")
+password_entry.pack(anchor="w", padx=(25, 0))
 
-CTkButton(master=frame, text="Login", fg_color="#601E88", hover_color="#E44982", font=("Arial Bold", 12), text_color="#ffffff", width=225).pack(anchor="w", pady=(40, 0), padx=(25, 0))
+CTkButton(master=frame, text="Login", command=login, fg_color="#601E88", hover_color="#E44982", font=("Arial Bold", 12), text_color="#ffffff", width=225).pack(anchor="w", pady=(40, 0), padx=(25, 0))
 CTkButton(master=frame, text="Register", fg_color="#601E88", hover_color="#E44982", font=("Arial Bold", 12), text_color="#ffffff", width=225).pack(anchor="w", pady=(20, 0), padx=(25, 0))
 
 app.mainloop()
